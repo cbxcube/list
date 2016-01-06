@@ -30,7 +30,7 @@ def itemInput():
 		if not i:
 			break
 		t = str(i)
-		shopList.append(i)
+		shopList.append(t)
 	for x in shopList: # Add items to DB
 		c.execute('INSERT INTO items VALUES(?,?)', (x, 0) )
 
@@ -43,7 +43,7 @@ def listItems():
 
 #Update values
 def select():
-	item = input("Input an item ")
+	item = input('Input an item:\n> ')
 	item = item.lower()
 	c.execute('SELECT name FROM items WHERE name=(?)', (item,))
 	c.execute('UPDATE items SET purchased=1 WHERE name=(?)', (item,))
@@ -63,6 +63,7 @@ def controls():
 	elif option.lower() == "add":
 		itemInput()
 	elif option.lower() == "select":
+		listItems()
 		select()
 	elif option.lower() == "quit":
 		shouldExit = True
